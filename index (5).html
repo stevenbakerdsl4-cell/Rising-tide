@@ -1,0 +1,1277 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Rising Tide Fitness — Hampstead, NC · 24/7</title>
+<link rel="icon" href="assets/logo.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo:wght@400;500;600;800;900&family=Archivo+Narrow:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
+<style>
+/* ---------- tokens ---------- */
+:root{
+  --ink:#05070E;
+  --navy:#0B1633;
+  --navy-2:#111f45;
+  --tide:#22B8E8;
+  --foam:#7FE0FF;
+  --bone:#F4F1EA;
+  --sand:#E8DFC9;
+  --rust:#D8552E;
+  --line:rgba(244,241,234,.14);
+  --line-dark:rgba(11,22,51,.14);
+
+  --f-display:"Bebas Neue","Archivo Narrow",Impact,sans-serif;
+  --f-body:"Archivo",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,monospace;
+  --f-serif:"Instrument Serif",Georgia,serif;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bone);
+  color:var(--ink);
+  font-family:var(--f-body);
+  font-size:16px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* ---------- helpers ---------- */
+.mono{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--tide)}
+.display{font-family:var(--f-display);line-height:.85;letter-spacing:.005em;font-weight:400}
+.serif-italic{font-family:var(--f-serif);font-style:italic;font-weight:400}
+.container{max-width:1440px;margin:0 auto;padding:0 40px}
+.divider{height:1px;background:var(--line-dark);border:0;margin:0}
+.divider--light{background:var(--line)}
+
+/* ---------- nav ---------- */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 40px;
+  background:rgba(244,241,234,.72);
+  backdrop-filter:blur(14px) saturate(1.2);
+  -webkit-backdrop-filter:blur(14px) saturate(1.2);
+  border-bottom:1px solid var(--line-dark);
+  transition:background .3s, color .3s, border-color .3s;
+}
+.nav.dark{
+  background:rgba(5,7,14,.72);
+  border-bottom-color:var(--line);
+  color:var(--bone);
+}
+.nav__logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
+.nav__logo img{height:42px;width:auto;display:block}
+.nav__logo-txt{display:flex;flex-direction:column;line-height:1}
+.nav__logo-txt b{font-family:var(--f-display);font-size:20px;letter-spacing:.02em}
+.nav__logo-txt span{font-family:var(--f-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;margin-top:3px;opacity:.7}
+.nav__links{display:flex;gap:28px;align-items:center}
+.nav__links a{color:inherit;text-decoration:none;font-size:13px;letter-spacing:.02em;font-weight:500;position:relative}
+.nav__links a::after{content:"";position:absolute;left:0;right:100%;bottom:-4px;height:1px;background:currentColor;transition:right .3s}
+.nav__links a:hover::after{right:0}
+.nav__cta{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--tide);color:var(--ink);
+  padding:10px 18px;border-radius:999px;
+  font-family:var(--f-display);letter-spacing:.03em;font-size:15px;
+  text-decoration:none;transition:transform .2s, background .2s;
+  border:1px solid transparent;
+}
+.nav__cta:hover{background:var(--foam);transform:translateY(-1px)}
+.nav__cta .dot{width:8px;height:8px;background:var(--ink);border-radius:99px}
+@media (max-width:840px){
+  .nav__links{display:none}
+  .nav{padding:12px 20px}
+}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;
+  background:var(--ink);
+  color:var(--bone);
+  min-height:100vh;
+  padding:120px 40px 60px;
+  overflow:hidden;
+  display:flex;flex-direction:column;
+}
+.hero__grid{
+  flex:1;
+  display:grid;
+  grid-template-columns: 1.35fr .9fr;
+  gap:40px;
+  align-items:stretch;
+  position:relative;
+  z-index:2;
+}
+.hero__wave{
+  position:absolute;inset:0;pointer-events:none;z-index:1;opacity:.55;
+}
+.hero__wave svg{width:100%;height:100%}
+.hero__meta-top{
+  display:flex;justify-content:space-between;
+  font-family:var(--f-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(244,241,234,.6);
+  padding-bottom:24px;border-bottom:1px solid var(--line);
+  margin-bottom:34px;
+  position:relative;z-index:3;
+}
+.hero__meta-top .live{display:inline-flex;align-items:center;gap:8px;color:var(--tide)}
+.hero__meta-top .live .pulse{width:8px;height:8px;background:var(--tide);border-radius:99px;box-shadow:0 0 0 0 var(--tide);animation:pulse 1.8s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(34,184,232,.7)}70%{box-shadow:0 0 0 12px rgba(34,184,232,0)}100%{box-shadow:0 0 0 0 rgba(34,184,232,0)}}
+
+.hero__left{display:flex;flex-direction:column;justify-content:space-between}
+.hero__wordmark{
+  font-family:var(--f-display);
+  font-size:clamp(64px, 13.5vw, 220px);
+  line-height:.82;
+  letter-spacing:.005em;
+  color:var(--bone);
+  margin:0;
+}
+.hero__wordmark .line{display:block;overflow:hidden}
+.hero__wordmark .line span{display:block;transform:translateY(110%);animation:rise .9s cubic-bezier(.22,.68,.32,1) forwards}
+.hero__wordmark .line:nth-child(1) span{animation-delay:.15s}
+.hero__wordmark .line:nth-child(2) span{animation-delay:.28s}
+.hero__wordmark .line:nth-child(3) span{animation-delay:.41s}
+.hero__wordmark .line:nth-child(4) span{animation-delay:.54s}
+.hero__wordmark .tide{color:var(--tide)}
+.hero__wordmark .slash{color:var(--tide);font-family:var(--f-serif);font-style:italic;font-weight:400}
+@keyframes rise{to{transform:translateY(0)}}
+
+.hero__sub{
+  max-width:520px;
+  font-size:16px;line-height:1.55;color:rgba(244,241,234,.72);
+  margin-top:32px;
+}
+.hero__sub b{color:var(--bone);font-weight:600}
+
+.hero__cta-row{display:flex;gap:18px;align-items:center;margin-top:28px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:16px 26px;border-radius:999px;
+  font-family:var(--f-display);font-size:18px;letter-spacing:.04em;
+  text-decoration:none;border:1px solid transparent;
+  cursor:pointer;transition:transform .2s, background .2s, color .2s;
+}
+.btn--tide{background:var(--tide);color:var(--ink)}
+.btn--tide:hover{background:var(--foam);transform:translateY(-1px)}
+.btn--ghost{background:transparent;border-color:rgba(244,241,234,.35);color:var(--bone)}
+.btn--ghost:hover{border-color:var(--tide);color:var(--tide)}
+.btn .arrow{font-family:var(--f-body);font-weight:700;font-size:16px}
+
+.hero__right{
+  display:grid;
+  grid-template-rows: 1fr auto;
+  gap:20px;
+  min-height:520px;
+}
+.hero__portrait{
+  position:relative;
+  border:1px solid var(--line);
+  overflow:hidden;
+  min-height:0;
+}
+.hero__portrait-info{
+  position:absolute;left:14px;bottom:14px;right:14px;
+  display:flex;justify-content:space-between;align-items:end;
+  font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(244,241,234,.9);
+  z-index:2;
+}
+.hero__portrait-info b{font-family:var(--f-display);font-size:22px;letter-spacing:.02em;display:block;margin-bottom:4px;color:var(--bone)}
+.hero__coords{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  border:1px solid var(--line);
+}
+.hero__coords > div{padding:14px 16px;border-right:1px solid var(--line)}
+.hero__coords > div:last-child{border-right:0}
+.hero__coords .k{font-family:var(--f-mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(244,241,234,.5);margin-bottom:4px}
+.hero__coords .v{font-family:var(--f-display);font-size:22px;letter-spacing:.02em}
+
+/* image slot ----------------------------------------- */
+.slot{
+  position:relative;
+  background:var(--navy);
+  color:var(--bone);
+  overflow:hidden;
+}
+.slot img{
+  position:absolute;inset:0;
+  width:100%;height:100%;object-fit:cover;
+  display:block;
+  filter:saturate(.9) contrast(1.02);
+}
+.slot::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(5,7,14,.35) 0%, rgba(5,7,14,.05) 30%, rgba(5,7,14,.55) 100%);
+  pointer-events:none;
+}
+.slot__tag{
+  position:absolute;top:12px;left:12px;
+  font-family:var(--f-mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(244,241,234,.9);
+  z-index:2;
+  padding:5px 8px;background:rgba(5,7,14,.55);border:1px solid rgba(244,241,234,.18);
+  backdrop-filter:blur(4px);
+}
+.slot--light{color:var(--navy)}
+.slot--light .slot__tag{color:var(--bone)}
+.slot--tint img{filter:saturate(.7) contrast(1.05) brightness(.85)}
+
+/* ---------- HERO marquee row ---------- */
+.hero__marquee{
+  margin-top:40px;
+  border-top:1px solid var(--line);
+  padding-top:22px;
+  display:flex;justify-content:space-between;align-items:center;gap:24px;
+  font-family:var(--f-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(244,241,234,.7);
+  position:relative;z-index:3;
+}
+.hero__marquee .schedule{
+  overflow:hidden;flex:1;position:relative;
+  mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+}
+.schedule__track{display:inline-flex;gap:44px;animation:scroll 40s linear infinite;white-space:nowrap;padding-right:44px}
+.schedule__track b{color:var(--tide)}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+@media (max-width:940px){
+  .hero__grid{grid-template-columns:1fr}
+  .hero__right{min-height:420px}
+  .hero__marquee{flex-direction:column;align-items:flex-start}
+}
+
+/* ---------- TICKER ---------- */
+.ticker{
+  background:var(--tide);color:var(--ink);
+  padding:22px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);
+  overflow:hidden;
+}
+.ticker__track{
+  display:inline-flex;gap:64px;white-space:nowrap;
+  font-family:var(--f-display);font-size:44px;letter-spacing:.03em;
+  animation:scroll 30s linear infinite;padding-right:64px;
+}
+.ticker__track .dot{color:var(--navy)}
+
+/* ---------- MANIFESTO ---------- */
+.manifesto{
+  background:var(--bone);color:var(--ink);
+  padding:120px 40px 100px;
+  border-bottom:1px solid var(--line-dark);
+}
+.manifesto__grid{
+  display:grid;grid-template-columns: 1.4fr 1fr;gap:80px;max-width:1440px;margin:0 auto;
+}
+.manifesto__eyebrow{display:flex;justify-content:space-between;align-items:center;margin-bottom:34px;grid-column:1/-1}
+.manifesto__eyebrow .n{font-family:var(--f-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);opacity:.55}
+.manifesto__body{font-family:var(--f-serif);font-size:clamp(28px,3.2vw,44px);line-height:1.15;letter-spacing:-.01em}
+.manifesto__body .drop{
+  float:left;font-family:var(--f-display);font-size:clamp(80px,10vw,140px);line-height:.78;
+  padding:6px 14px 0 0;color:var(--tide);
+}
+.manifesto__body em{font-style:italic;color:var(--navy)}
+.manifesto__body b{background:var(--tide);color:var(--ink);padding:0 6px;font-weight:400;font-family:var(--f-serif)}
+
+.pillars{display:flex;flex-direction:column;gap:24px}
+.pillar{padding:22px 0;border-top:1px solid var(--line-dark);display:grid;grid-template-columns:60px 1fr;gap:18px}
+.pillar:last-child{border-bottom:1px solid var(--line-dark)}
+.pillar__n{font-family:var(--f-display);font-size:38px;color:var(--tide);line-height:1}
+.pillar h3{font-family:var(--f-display);font-size:26px;margin:0 0 6px;letter-spacing:.02em}
+.pillar p{margin:0;font-size:14px;color:rgba(5,7,14,.7);line-height:1.55}
+
+@media (max-width:900px){
+  .manifesto__grid{grid-template-columns:1fr;gap:50px}
+  .manifesto{padding:80px 24px}
+}
+
+/* ---------- PROGRAMS ---------- */
+.programs{
+  background:var(--ink);color:var(--bone);
+  padding:120px 40px;
+  position:relative;overflow:hidden;
+}
+.programs__head{
+  display:flex;justify-content:space-between;align-items:end;
+  padding-bottom:40px;border-bottom:1px solid var(--line);margin-bottom:0;
+  max-width:1440px;margin:0 auto;
+}
+.programs__title{font-family:var(--f-display);font-size:clamp(60px,10vw,160px);line-height:.82;margin:0}
+.programs__title .tide{color:var(--tide)}
+.programs__head p{max-width:340px;font-size:14px;color:rgba(244,241,234,.6);margin:0}
+
+.programs__grid{
+  max-width:1440px;margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:0;
+}
+.prog{
+  position:relative;
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  padding:28px 24px 24px;
+  min-height:380px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  overflow:hidden;
+  transition:background .35s;
+  color:var(--bone);text-decoration:none;
+}
+.prog::before{
+  content:"";position:absolute;inset:0;
+  background:var(--tide);transform:translateY(101%);transition:transform .5s cubic-bezier(.22,.68,.32,1);z-index:0;
+}
+.prog:hover::before{transform:translateY(0)}
+.prog:hover{color:var(--ink)}
+.prog:hover .prog__img{opacity:.15}
+.prog > *{position:relative;z-index:1}
+
+.prog__num{font-family:var(--f-mono);font-size:11px;letter-spacing:.18em;color:rgba(244,241,234,.55)}
+.prog:hover .prog__num{color:rgba(5,7,14,.6)}
+.prog__name{font-family:var(--f-display);font-size:44px;line-height:.9;margin:12px 0 0;letter-spacing:.01em}
+.prog__meta{font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;color:rgba(244,241,234,.55);margin-top:6px;text-transform:uppercase}
+.prog:hover .prog__meta{color:rgba(5,7,14,.7)}
+.prog__desc{margin-top:20px;font-size:13px;line-height:1.5;color:rgba(244,241,234,.72);max-width:280px}
+.prog:hover .prog__desc{color:rgba(5,7,14,.85)}
+.prog__cta{margin-top:24px;display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase}
+.prog__img{
+  position:absolute;inset:0;z-index:0;
+  overflow:hidden;
+}
+.prog__img img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  opacity:.32;filter:grayscale(.2) contrast(1.05) saturate(.75);
+  transition:opacity .5s, transform .8s;
+  transform:scale(1.02);
+}
+.prog:hover .prog__img img{opacity:.06;transform:scale(1.06)}
+.prog--07 .prog__img img{opacity:.28}
+.prog--07:hover .prog__img img{opacity:.28}
+
+.prog--01{grid-column:span 5}
+.prog--02{grid-column:span 4}
+.prog--03{grid-column:span 3;background:var(--navy)}
+.prog--04{grid-column:span 3;background:var(--navy)}
+.prog--05{grid-column:span 4}
+.prog--06{grid-column:span 5}
+.prog--07{grid-column:span 12;background:var(--rust);min-height:180px;flex-direction:row;justify-content:space-between;align-items:center;padding:34px 40px}
+.prog--07 .prog__name{font-size:64px;margin:0}
+.prog--07 .prog__desc{max-width:none;margin:0}
+.prog--07:hover::before{transform:translateY(101%)}
+.prog--07:hover{color:var(--bone)}
+.prog--07 .prog__cta{margin:0}
+
+@media (max-width:1100px){
+  .prog--01,.prog--02,.prog--03,.prog--04,.prog--05,.prog--06{grid-column:span 6}
+  .prog--07{grid-column:span 12;flex-direction:column;align-items:flex-start;gap:20px}
+  .prog--07 .prog__name{font-size:48px}
+}
+@media (max-width:640px){
+  .prog{grid-column:span 12 !important}
+  .programs__head{flex-direction:column;align-items:flex-start;gap:20px}
+}
+
+/* ---------- FACILITY ---------- */
+.facility{
+  background:var(--bone);color:var(--ink);
+  padding:120px 40px;
+}
+.facility__inner{max-width:1440px;margin:0 auto}
+.facility__head{
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;
+  padding-bottom:60px;border-bottom:1px solid var(--line-dark);margin-bottom:40px;
+}
+.facility__title{font-family:var(--f-display);font-size:clamp(56px,8vw,140px);line-height:.85;margin:0;letter-spacing:.005em}
+.facility__title .serif{font-family:var(--f-serif);font-style:italic;color:var(--tide);font-weight:400}
+.facility__quote{font-family:var(--f-serif);font-size:22px;line-height:1.4;color:var(--navy);max-width:440px;justify-self:end}
+.facility__quote::before{content:"“";font-family:var(--f-serif);font-size:64px;line-height:0;position:relative;top:22px;color:var(--tide);margin-right:6px}
+.facility__quote cite{display:block;font-style:normal;font-family:var(--f-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(5,7,14,.55);margin-top:16px}
+
+.facility__grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  grid-auto-rows:110px;
+  gap:16px;
+}
+.facility__grid .slot{border:1px solid var(--line-dark)}
+.f-1{grid-column:span 7;grid-row:span 4}
+.f-2{grid-column:span 5;grid-row:span 2}
+.f-3{grid-column:span 3;grid-row:span 2}
+.f-4{grid-column:span 2;grid-row:span 2;background:var(--tide);color:var(--ink);display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;background-image:none}
+.f-4::before{display:none}
+.f-4 .big{font-family:var(--f-display);font-size:64px;line-height:.9}
+.f-4 .lbl{font-family:var(--f-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;margin-top:4px}
+.f-5{grid-column:span 4;grid-row:span 2}
+.f-6{grid-column:span 4;grid-row:span 2}
+.f-7{grid-column:span 4;grid-row:span 2}
+@media (max-width:900px){
+  .facility__head{grid-template-columns:1fr;gap:24px}
+  .facility__quote{justify-self:start}
+  .f-1,.f-2,.f-3,.f-4,.f-5,.f-6,.f-7{grid-column:span 12;grid-row:span 3}
+}
+
+/* ---------- COACHES ---------- */
+.coaches{
+  background:var(--navy);color:var(--bone);
+  padding:120px 0 100px;
+  overflow:hidden;
+}
+.coaches__head{
+  padding:0 40px 40px;max-width:1440px;margin:0 auto;
+  display:flex;justify-content:space-between;align-items:end;gap:40px;
+  border-bottom:1px solid var(--line);
+}
+.coaches__title{font-family:var(--f-display);font-size:clamp(56px,9vw,150px);line-height:.85;margin:0;letter-spacing:.005em}
+.coaches__title .foam{color:var(--foam)}
+.coaches__head p{max-width:340px;font-size:14px;color:rgba(244,241,234,.7);margin:0}
+
+.coaches__scroller{
+  display:flex;gap:24px;
+  padding:40px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  scrollbar-width:none;
+}
+.coaches__scroller::-webkit-scrollbar{display:none}
+.coach{
+  flex:0 0 340px;scroll-snap-align:start;
+  display:flex;flex-direction:column;gap:14px;
+}
+.coach__portrait{aspect-ratio:4/5;position:relative;border:1px solid var(--line)}
+.coach__num{position:absolute;top:12px;right:12px;font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;color:var(--bone);z-index:2}
+.coach__name{font-family:var(--f-display);font-size:52px;line-height:.9;margin:6px 0 0;letter-spacing:.01em}
+.coach__spec{font-family:var(--f-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--tide)}
+.coach__quote{font-family:var(--f-serif);font-style:italic;font-size:16px;line-height:1.4;color:rgba(244,241,234,.85);margin-top:6px}
+.coach__quote::before{content:"“";color:var(--tide);margin-right:2px}
+
+/* ---------- WALL of REVIEWS ---------- */
+.wall{
+  background:var(--bone);color:var(--ink);
+  padding:120px 40px;
+  position:relative;
+}
+.wall__head{
+  max-width:1440px;margin:0 auto 60px;
+  display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;
+}
+.wall__title{font-family:var(--f-display);font-size:clamp(56px,8vw,140px);line-height:.85;margin:0}
+.wall__title .rust{color:var(--rust)}
+.wall__meta{justify-self:end;text-align:right}
+.wall__meta .stars{font-family:var(--f-display);font-size:56px;color:var(--rust);letter-spacing:.05em;line-height:1}
+.wall__meta .m{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(5,7,14,.6);margin-top:6px}
+
+.wall__grid{
+  max-width:1440px;margin:0 auto;
+  columns:3 320px;column-gap:24px;
+}
+.review{
+  break-inside:avoid;
+  padding:26px;
+  margin-bottom:24px;
+  background:var(--bone);
+  border:1px solid var(--line-dark);
+  display:flex;flex-direction:column;gap:14px;
+  transition:transform .3s, background .3s;
+}
+.review:hover{transform:translateY(-4px);background:#fff}
+.review:nth-child(3n){background:var(--navy);color:var(--bone);border-color:var(--navy)}
+.review:nth-child(3n) .review__meta{color:rgba(244,241,234,.65)}
+.review:nth-child(5n){background:var(--tide);color:var(--ink);border-color:var(--tide)}
+.review__stars{font-family:var(--f-display);font-size:20px;color:var(--rust);letter-spacing:.1em;line-height:1}
+.review:nth-child(3n) .review__stars{color:var(--foam)}
+.review:nth-child(5n) .review__stars{color:var(--ink)}
+.review__body{font-family:var(--f-serif);font-size:20px;line-height:1.32}
+.review__meta{font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(5,7,14,.55);border-top:1px solid currentColor;padding-top:12px}
+
+/* ---------- HOW IT WORKS ---------- */
+.how{background:var(--ink);color:var(--bone)}
+.how__head{padding:100px 40px 40px;max-width:1440px;margin:0 auto;display:flex;justify-content:space-between;align-items:end;gap:40px;border-bottom:1px solid var(--line)}
+.how__title{font-family:var(--f-display);font-size:clamp(56px,8vw,140px);line-height:.85;margin:0}
+.how__title .tide{color:var(--tide)}
+.how__head p{max-width:340px;font-size:14px;color:rgba(244,241,234,.65);margin:0}
+
+.step{
+  display:grid;grid-template-columns: 160px 1.4fr 1fr;
+  gap:60px;align-items:center;
+  padding:60px 40px;
+  border-bottom:1px solid var(--line);
+  max-width:1440px;margin:0 auto;
+  position:relative;
+}
+.step:hover{background:rgba(34,184,232,.04)}
+.step__n{font-family:var(--f-display);font-size:140px;line-height:.85;color:var(--tide)}
+.step h3{font-family:var(--f-display);font-size:56px;margin:0 0 14px;line-height:.9;letter-spacing:.005em}
+.step p{font-size:15px;line-height:1.55;color:rgba(244,241,234,.75);margin:0;max-width:520px}
+.step__aside{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,241,234,.55);border-left:1px solid var(--line);padding-left:20px}
+.step__aside b{display:block;font-family:var(--f-display);font-size:32px;letter-spacing:.02em;color:var(--tide);margin-bottom:4px}
+@media (max-width:900px){
+  .step{grid-template-columns:1fr;gap:20px;padding:40px 24px}
+  .step__n{font-size:100px}
+  .how__head{flex-direction:column;align-items:flex-start;padding:80px 24px 30px}
+}
+
+/* ---------- SCHEDULE ---------- */
+.sched{
+  background:var(--sand);color:var(--ink);
+  padding:120px 40px;
+}
+.sched__inner{max-width:1440px;margin:0 auto}
+.sched__head{display:flex;justify-content:space-between;align-items:end;padding-bottom:30px;border-bottom:2px solid var(--ink);margin-bottom:30px;gap:30px;flex-wrap:wrap}
+.sched__title{font-family:var(--f-display);font-size:clamp(48px,7vw,110px);line-height:.85;margin:0}
+.sched__nav{display:flex;gap:12px;font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.sched__nav button{background:transparent;border:1px solid var(--ink);padding:10px 16px;font-family:inherit;font-size:inherit;letter-spacing:inherit;text-transform:inherit;cursor:pointer;color:var(--ink);border-radius:0;transition:background .2s, color .2s}
+.sched__nav button.on{background:var(--ink);color:var(--sand)}
+.sched__nav button:hover{background:var(--navy);color:var(--sand)}
+
+.sched__grid{display:grid;grid-template-columns:120px 1fr;border-top:1px solid var(--line-dark)}
+.sched__row{display:contents}
+.sched__time{
+  padding:22px 8px 22px 0;font-family:var(--f-display);font-size:28px;color:var(--navy);
+  border-bottom:1px solid var(--line-dark);
+}
+.sched__class{
+  padding:22px 20px;border-bottom:1px solid var(--line-dark);border-left:1px solid var(--line-dark);
+  display:grid;grid-template-columns:1fr auto auto;gap:20px;align-items:center;
+  transition:background .2s;cursor:pointer;
+}
+.sched__class:hover{background:var(--tide);color:var(--ink)}
+.sched__class-name{font-family:var(--f-display);font-size:26px;letter-spacing:.02em;line-height:1}
+.sched__class-coach{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(5,7,14,.55)}
+.sched__class:hover .sched__class-coach{color:rgba(5,7,14,.75)}
+.sched__book{font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:8px 12px;border:1px solid currentColor;border-radius:99px}
+
+/* ---------- CTA ---------- */
+.cta{
+  background:var(--ink);color:var(--bone);
+  padding:140px 40px;position:relative;overflow:hidden;
+  text-align:center;
+}
+.cta__wave{position:absolute;inset:auto 0 0 0;height:60%;pointer-events:none;opacity:.6}
+.cta__wave svg{width:100%;height:100%}
+.cta__inner{position:relative;z-index:2;max-width:1200px;margin:0 auto}
+.cta__eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.22em;color:var(--tide);margin-bottom:24px;text-transform:uppercase}
+.cta__title{font-family:var(--f-display);font-size:clamp(80px,15vw,240px);line-height:.82;margin:0;letter-spacing:.005em}
+.cta__title .tide{color:var(--tide)}
+.cta__title .serif{font-family:var(--f-serif);font-style:italic;color:var(--foam);font-weight:400}
+.cta__sub{margin-top:30px;font-size:18px;color:rgba(244,241,234,.75);max-width:640px;margin-left:auto;margin-right:auto}
+.cta__row{display:flex;gap:16px;justify-content:center;margin-top:40px;flex-wrap:wrap}
+.cta__strip{
+  display:flex;gap:60px;justify-content:center;flex-wrap:wrap;
+  margin-top:60px;padding-top:40px;border-top:1px solid var(--line);
+  font-family:var(--f-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(244,241,234,.6);
+}
+.cta__strip b{color:var(--tide);font-family:var(--f-display);font-size:28px;letter-spacing:.02em;display:block;margin-bottom:4px}
+
+/* ---------- LOCATION ---------- */
+.loc{background:var(--bone);color:var(--ink);padding:120px 40px}
+.loc__inner{max-width:1440px;margin:0 auto;display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:stretch}
+.loc__title{font-family:var(--f-display);font-size:clamp(56px,8vw,130px);line-height:.85;margin:0 0 40px;letter-spacing:.005em}
+.loc__title .tide{color:var(--tide)}
+.loc__meta{display:flex;flex-direction:column;gap:28px;font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(5,7,14,.55)}
+.loc__meta > div b{display:block;font-family:var(--f-display);font-size:32px;letter-spacing:.02em;color:var(--ink);margin-top:6px;text-transform:none;letter-spacing:.01em}
+.loc__hours{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
+.loc__hours .day{color:rgba(5,7,14,.55)}
+.loc__map{min-height:520px;border:1px solid var(--line-dark);position:relative;overflow:hidden}
+.loc__mapart{position:absolute;inset:0}
+.loc__mapart svg{display:block;width:100%;height:100%}
+.loc__pin{
+  position:absolute;top:44%;left:52%;transform:translate(-50%,-100%);
+  z-index:2;background:var(--tide);color:var(--ink);
+  padding:10px 14px;font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  white-space:nowrap;
+}
+.loc__pin::after{content:"";position:absolute;left:50%;bottom:-8px;transform:translateX(-50%);width:0;height:0;border:6px solid transparent;border-top-color:var(--tide)}
+@media (max-width:900px){
+  .loc__inner{grid-template-columns:1fr;gap:40px}
+  .loc__map{min-height:360px}
+}
+
+/* ---------- FAQ ---------- */
+.faq{background:var(--navy);color:var(--bone);padding:120px 40px}
+.faq__inner{max-width:1200px;margin:0 auto}
+.faq__title{font-family:var(--f-display);font-size:clamp(56px,8vw,130px);line-height:.85;margin:0 0 40px;letter-spacing:.005em}
+.faq__title .tide{color:var(--tide)}
+.faq__list{border-top:1px solid var(--line)}
+.faq__item{border-bottom:1px solid var(--line)}
+.faq__item summary{
+  cursor:pointer;list-style:none;padding:26px 0;
+  display:flex;justify-content:space-between;align-items:center;gap:20px;
+  font-family:var(--f-display);font-size:clamp(24px,3vw,38px);letter-spacing:.01em;line-height:1.1;
+}
+.faq__item summary::-webkit-details-marker{display:none}
+.faq__item summary::after{content:"+";font-family:var(--f-display);font-size:44px;color:var(--tide);transition:transform .3s}
+.faq__item[open] summary::after{transform:rotate(45deg)}
+.faq__item[open] summary{color:var(--tide)}
+.faq__answer{padding:0 0 26px;font-family:var(--f-serif);font-size:20px;line-height:1.45;color:rgba(244,241,234,.8);max-width:820px}
+
+/* ---------- FOOTER ---------- */
+.footer{background:var(--ink);color:var(--bone);padding:80px 40px 30px;position:relative;overflow:hidden}
+.footer__inner{max-width:1440px;margin:0 auto}
+.footer__top{
+  display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;
+  padding-bottom:60px;border-bottom:1px solid var(--line);
+}
+.footer__col h4{font-family:var(--f-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;margin:0 0 20px;color:rgba(244,241,234,.5)}
+.footer__col a{color:var(--bone);text-decoration:none;display:block;font-family:var(--f-display);font-size:22px;letter-spacing:.02em;padding:4px 0;transition:color .2s}
+.footer__col a:hover{color:var(--tide)}
+.footer__brand{max-width:360px}
+.footer__brand-logo{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.footer__brand-logo img{height:64px}
+.footer__brand-logo b{font-family:var(--f-display);font-size:26px;letter-spacing:.02em;line-height:1;display:block}
+.footer__brand-logo span{font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,241,234,.6);display:block;margin-top:4px}
+.footer__brand p{font-size:14px;color:rgba(244,241,234,.7);line-height:1.55}
+
+.footer__mega{
+  font-family:var(--f-display);
+  font-size:clamp(90px,20vw,320px);line-height:.8;letter-spacing:.005em;
+  margin:60px 0 30px;
+  color:transparent;-webkit-text-stroke:1px rgba(244,241,234,.35);
+  white-space:nowrap;overflow:hidden;
+}
+.footer__mega .fill{color:var(--tide);-webkit-text-stroke:0}
+.footer__legal{
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;
+  font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,241,234,.5);
+}
+@media (max-width:840px){
+  .footer__top{grid-template-columns:1fr 1fr;gap:30px}
+}
+@media (max-width:520px){
+  .footer__top{grid-template-columns:1fr}
+}
+
+/* ---------- reveal on scroll ---------- */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease, transform .8s cubic-bezier(.22,.68,.32,1)}
+.reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <a class="nav__logo" href="#top">
+    <img src="assets/logo.png" alt="Rising Tide Fitness"/>
+    <span class="nav__logo-txt"><b>RISING TIDE</b><span>24/7 · Hampstead NC</span></span>
+  </a>
+  <nav class="nav__links">
+    <a href="#programs">Programs</a>
+    <a href="#facility">Facility</a>
+    <a href="#coaches">Coaches</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#location">Visit</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+  <a class="nav__cta" href="#cta"><span class="dot"></span>10-Day Free Trial</a>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero__wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="wg" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0" stop-color="#22B8E8" stop-opacity=".85"/>
+          <stop offset="1" stop-color="#0B1633" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <path fill="none" stroke="url(#wg)" stroke-width="1.5" d="M-100,720 C 200,620 340,780 560,700 C 780,620 900,540 1120,600 C 1280,640 1400,560 1540,600"/>
+      <path fill="none" stroke="url(#wg)" stroke-width="1" opacity=".55" d="M-100,760 C 220,680 380,820 600,740 C 820,660 940,600 1160,650 C 1300,680 1420,620 1540,650"/>
+      <path fill="none" stroke="url(#wg)" stroke-width=".8" opacity=".35" d="M-100,800 C 240,720 420,860 640,780 C 860,700 980,660 1200,700 C 1320,720 1440,680 1540,700"/>
+    </svg>
+  </div>
+
+  <div class="hero__meta-top">
+    <span>◐ Rising Tide Fitness · Est. 2019 · Hampstead NC</span>
+    <span class="live"><span class="pulse"></span>Doors open · 24 · 7 · 365</span>
+    <span>N 34.36° / W 77.70°</span>
+  </div>
+
+  <div class="hero__grid">
+    <div class="hero__left">
+      <div>
+        <h1 class="hero__wordmark">
+          <span class="line"><span>THE&nbsp;TIDE</span></span>
+          <span class="line"><span class="serif">rises</span></span>
+          <span class="line"><span>AT&nbsp;<span class="tide">5AM</span>.</span></span>
+          <span class="line"><span>AND&nbsp;11PM.</span></span>
+        </h1>
+        <p class="hero__sub">
+          A different kind of gym in Hampstead, NC. <b>Veteran-owned. Family-operated.</b>
+          Open 24/7 with real coaches, real classes, and a community that shows up for each other — no ego, no cameras, no bullshit.
+        </p>
+        <div class="hero__cta-row">
+          <a class="btn btn--tide" href="#cta">Start 10-Day Trial <span class="arrow">→</span></a>
+          <a class="btn btn--ghost" href="#facility">Tour The Space</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__right">
+      <div class="slot hero__portrait">
+        <img src="assets/hero-portrait.jpg" alt="Member training with battle ropes"/>
+        <span class="slot__tag">Frame 001 · Members floor · 05:42 AM</span>
+        <div class="hero__portrait-info">
+          <span><b>KELLI R.</b>Member since '21 · Strength</span>
+          <span>FRAME 001 / 004</span>
+        </div>
+      </div>
+      <div class="hero__coords">
+        <div><div class="k">Members</div><div class="v">1,240+</div></div>
+        <div><div class="k">Classes / wk</div><div class="v">62</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero__marquee">
+    <span>TODAY · WED 09.03</span>
+    <div class="schedule">
+      <div class="schedule__track" id="schedTrack">
+        <!-- populated by JS to guarantee seamless loop -->
+      </div>
+    </div>
+    <span>SCROLL ↓</span>
+  </div>
+</section>
+
+<!-- ============ TICKER ============ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__track" id="ticker"></div>
+</div>
+
+<!-- ============ MANIFESTO ============ -->
+<section class="manifesto reveal">
+  <div class="manifesto__grid">
+    <div class="manifesto__eyebrow">
+      <span class="n">§ 01 · MANIFESTO</span>
+      <span class="n">HAMPSTEAD, NC</span>
+    </div>
+    <div class="manifesto__body">
+      <span class="drop">A</span>different kind of gym, built by a family, for a town. We don't sell contracts, transformation packages, or 6-week miracles. We build <b>consistency</b>. We build people who <em>show up</em> — at 5AM, at 8PM, on the sore days, on the great ones. The tide doesn't quit. Neither do we.
+    </div>
+
+    <div class="pillars">
+      <div class="pillar"><div class="pillar__n">01</div><div><h3>Accountability</h3><p>Coaches who know your name, your goals, and the day you skipped last week. Progress is measured, not marketed.</p></div></div>
+      <div class="pillar"><div class="pillar__n">02</div><div><h3>Support</h3><p>Members lift each other — literally and otherwise. New here? Someone will introduce themselves in the first ten minutes.</p></div></div>
+      <div class="pillar"><div class="pillar__n">03</div><div><h3>Real Progress</h3><p>Guidance on training, nutrition, sleep, and recovery — because results without a life around them don't stick.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROGRAMS ============ -->
+<section class="programs" id="programs">
+  <div class="programs__head reveal">
+    <h2 class="programs__title">TRAIN.<br><span class="tide">EVERY WAY.</span></h2>
+    <p>Seven ways to move. One community. Every membership includes access to all programs, kids care, and the sauna. No upcharges, no tiers.</p>
+  </div>
+
+  <div class="programs__grid">
+    <a href="#" class="prog prog--01 reveal">
+      <div class="prog__img"><img src="assets/prog-24-7.jpg" alt=""/></div>
+      <div>
+        <div class="prog__num">P/01 · OPEN GYM</div>
+        <h3 class="prog__name">24/7 Access</h3>
+        <div class="prog__meta">Free weights · Racks · Machines · Cardio</div>
+      </div>
+      <div>
+        <p class="prog__desc">Members-only key-fob access, every hour of every day. Six racks, dumbbells to 120lb, sled turf, a full cardio deck, and a sauna to close it out.</p>
+        <div class="prog__cta">Learn more →</div>
+      </div>
+    </a>
+    <a href="#" class="prog prog--02 reveal">
+      <div class="prog__img"><img src="assets/prog-hiit.jpg" alt=""/></div>
+      <div>
+        <div class="prog__num">P/02 · CLASS</div>
+        <h3 class="prog__name">HIIT<br>with&nbsp;Britt</h3>
+        <div class="prog__meta">Tue · Thu · 6am / 9am / 5:30pm</div>
+      </div>
+      <div>
+        <p class="prog__desc">Sixty minutes. Interval-forward. Coach Britt will kick your butt — in a good way, per the reviews.</p>
+        <div class="prog__cta">Book a class →</div>
+      </div>
+    </a>
+    <a href="#" class="prog prog--03 reveal">
+      <div class="prog__img"><img src="assets/prog-yoga.jpg" alt=""/></div>
+      <div>
+        <div class="prog__num">P/03 · CLASS</div>
+        <h3 class="prog__name">Hot<br>Yoga</h3>
+        <div class="prog__meta">Daily · 95°F studio</div>
+      </div>
+      <div>
+        <p class="prog__desc">Heat, breath, mobility. All levels.</p>
+        <div class="prog__cta">Schedule →</div>
+      </div>
+    </a>
+    <a href="#" class="prog prog--04 reveal">
+      <div>
+        <div class="prog__num">P/04 · CLASS</div>
+        <h3 class="prog__name">Pilates</h3>
+        <div class="prog__meta">Reformer + Mat</div>
+      </div>
+      <div>
+        <p class="prog__desc">Small groups. Precision over pace.</p>
+        <div class="prog__cta">Schedule →</div>
+      </div>
+    </a>
+    <a href="#" class="prog prog--05 reveal">
+      <div class="prog__img"><img src="assets/prog-pt.jpg" alt=""/></div>
+      <div>
+        <div class="prog__num">P/05 · 1-ON-1</div>
+        <h3 class="prog__name">Personal Training</h3>
+        <div class="prog__meta">Strength · Fat-loss · Sport-specific</div>
+      </div>
+      <div>
+        <p class="prog__desc">Programmed by an elite Hampstead coach. Meal-planning, supplement guidance, and recovery included in every package.</p>
+        <div class="prog__cta">Meet the coaches →</div>
+      </div>
+    </a>
+    <a href="#" class="prog prog--06 reveal">
+      <div class="prog__img"><img src="assets/prog-group.jpg" alt=""/></div>
+      <div>
+        <div class="prog__num">P/06 · CLASS</div>
+        <h3 class="prog__name">Group Fitness</h3>
+        <div class="prog__meta">Varied programming · Published week ahead</div>
+      </div>
+      <div>
+        <p class="prog__desc">Strength days. Conditioning days. Bodyweight days. Kettlebells, barbells, rowers, bikes. Sixty-minute classes led by qualified coaches, universally scaled to every level.</p>
+        <div class="prog__cta">See this week →</div>
+      </div>
+    </a>
+    <a href="#" class="prog prog--07 reveal">
+      <div>
+        <div class="prog__num">P/07 · FAMILY</div>
+        <h3 class="prog__name">Kids Care Included.</h3>
+      </div>
+      <p class="prog__desc" style="max-width:520px">Bring the kids. We watch them while you train — no extra charge, no scheduling gymnastics. Part of every membership.</p>
+      <div class="prog__cta">See policy →</div>
+    </a>
+  </div>
+</section>
+
+<!-- ============ FACILITY ============ -->
+<section class="facility" id="facility">
+  <div class="facility__inner">
+    <div class="facility__head reveal">
+      <h2 class="facility__title">The&nbsp;floor.<br>The&nbsp;<span class="serif">flags</span>.<br>The&nbsp;sauna.</h2>
+      <blockquote class="facility__quote">
+        The gym is clean and had everything you need including a sauna. Can't wait to come visit again.
+        <cite>— Member, Google Review</cite>
+      </blockquote>
+    </div>
+
+    <div class="facility__grid reveal">
+      <div class="slot f-1"><img src="assets/fac-main.jpg" alt="Main gym floor"/><span class="slot__tag">Facility · Main floor</span></div>
+      <div class="slot f-2"><img src="assets/fac-weights.jpg" alt="Squat racks and bumper plates"/><span class="slot__tag">Facility · Rack row</span></div>
+      <div class="slot f-3"><img src="assets/fac-sauna.jpg" alt="Cedar sauna interior"/><span class="slot__tag">Facility · Sauna</span></div>
+      <div class="f-4"><div><div class="big">24/7</div><div class="lbl">Fob access</div></div></div>
+      <div class="slot f-5"><img src="assets/fac-yoga.jpg" alt="Hot yoga studio"/><span class="slot__tag">Facility · Studio B</span></div>
+      <div class="slot f-6"><img src="assets/fac-kids.jpg" alt="Kids care area"/><span class="slot__tag">Facility · Kids Care</span></div>
+      <div class="slot slot--tint f-7"><img src="assets/fac-detail.jpg" alt="Group kettlebell class"/><span class="slot__tag">Detail · 6am Metcon</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COACHES ============ -->
+<section class="coaches" id="coaches">
+  <div class="coaches__head reveal">
+    <h2 class="coaches__title">Meet the<br><span class="foam">people</span> who care.</h2>
+    <p>Every coach here has walked in your shoes. Ask for them by name — they'll remember yours.</p>
+  </div>
+  <div class="coaches__scroller">
+    <div class="coach reveal">
+      <div class="slot coach__portrait"><img src="assets/coach-britt.jpg" alt="Coach Britt"/><span class="coach__num">C/01</span></div>
+      <div class="coach__spec">HIIT · GROUP FITNESS</div>
+      <h3 class="coach__name">Britt</h3>
+      <p class="coach__quote">If you leave my class smiling, you didn't work hard enough. See you Thursday.</p>
+    </div>
+    <div class="coach reveal">
+      <div class="slot coach__portrait"><img src="assets/coach-aaron.jpg" alt="Coach Aaron"/><span class="coach__num">C/02</span></div>
+      <div class="coach__spec">MANAGER · PROGRAMMING</div>
+      <h3 class="coach__name">Aaron</h3>
+      <p class="coach__quote">Everything I know about the gym floor, I'll teach you. Nothing is a dumb question.</p>
+    </div>
+    <div class="coach reveal">
+      <div class="slot coach__portrait"><img src="assets/coach-kelli.jpg" alt="Coach Kelli Ramsey"/><span class="coach__num">C/03</span></div>
+      <div class="coach__spec">STRENGTH · BEGINNERS</div>
+      <h3 class="coach__name">Kelli<br>Ramsey</h3>
+      <p class="coach__quote">First time under a barbell? Perfect. That's my favorite session of the week.</p>
+    </div>
+    <div class="coach reveal">
+      <div class="slot coach__portrait"><img src="assets/coach-brittany.jpg" alt="Coach Brittany Hardenburgh"/><span class="coach__num">C/04</span></div>
+      <div class="coach__spec">YOGA · MOBILITY</div>
+      <h3 class="coach__name">Brittany<br>H.</h3>
+      <p class="coach__quote">Breath first. Everything else follows. Meet me on the mat at 6.</p>
+    </div>
+    <div class="coach reveal">
+      <div class="slot coach__portrait"><img src="assets/coach-5.jpg" alt="Rising Tide coach"/><span class="coach__num">C/05</span></div>
+      <div class="coach__spec">PILATES · REFORMER</div>
+      <h3 class="coach__name">Your&nbsp;Name</h3>
+      <p class="coach__quote">Placeholder — swap in with a real coach bio, portrait, and specialty.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WALL OF REVIEWS ============ -->
+<section class="wall">
+  <div class="wall__head reveal">
+    <h2 class="wall__title">Two hundred and<br>thirty-nine <span class="rust">5★</span><br>reviews.</h2>
+    <div class="wall__meta">
+      <div class="stars">★★★★★</div>
+      <div class="m">Google · Yelp · Facebook · Birdeye · Verified</div>
+    </div>
+  </div>
+
+  <div class="wall__grid">
+    <div class="review">
+      <div class="review__stars">★★★★★</div>
+      <p class="review__body">Joined this gym a few months ago after years of avoiding the gym. The staff is always so friendly and welcoming. Everything is clean. Best of all, I can take my young boys with me — kids care is included with your membership.</p>
+      <div class="review__meta">Amanda W. · HIIT with Britt</div>
+    </div>
+    <div class="review">
+      <div class="review__stars">★★★★★</div>
+      <p class="review__body">What an amazing gym! Was visiting the area and stopped in for the week. Met the owners and they were welcoming and great. The gym is clean and had everything you need including a sauna.</p>
+      <div class="review__meta">Travis M. · Out-of-town visitor</div>
+    </div>
+    <div class="review">
+      <div class="review__stars">★★★★★</div>
+      <p class="review__body">Great gym, manager is always going around cleaning. Staff is friendly. Gym is not too crowded and there's plenty of equipment. It's nice to not see influencers with their cameras.</p>
+      <div class="review__meta">D. Nguyen · Open gym member</div>
+    </div>
+    <div class="review">
+      <div class="review__stars">★★★★★</div>
+      <p class="review__body">Rising Tide Fitness is the best gym I have joined. The staff is super friendly and inviting. The manager Aaron is very helpful and extremely knowledgeable when it comes to all aspects of the gym.</p>
+      <div class="review__meta">Chris L. · Personal training</div>
+    </div>
+    <div class="review">
+      <div class="review__stars">★★★★★</div>
+      <p class="review__body">Rising Tide is outstanding! Equipment of all types, very clean, always open, and best of all an extremely friendly and helpful staff. I have been strength training with Kelli and she's the best.</p>
+      <div class="review__meta">Sara P. · Strength training w/ Kelli</div>
+    </div>
+    <div class="review">
+      <div class="review__stars">★★★★★</div>
+      <p class="review__body">I have no previous weightlifting experience and Kelli has provided a wealth of knowledge and guidance. The results have made me, for the first time ever, excited about going to the gym.</p>
+      <div class="review__meta">First-time lifter · Hampstead</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW ============ -->
+<section class="how">
+  <div class="how__head reveal">
+    <h2 class="how__title">Getting started<br><span class="tide">is easy.</span></h2>
+    <p>Book your intro. Learn the fundamentals. Come back for the rest of your life. Ten days free before any decision.</p>
+  </div>
+
+  <div class="step reveal">
+    <div class="step__n">01</div>
+    <div>
+      <h3>Schedule your first visit.</h3>
+      <p>Fifteen minutes with a coach. Talk through your goals, meet the trainers, tour the floor, see the classes and the kids care in action. No sales pitch, no obligation.</p>
+    </div>
+    <div class="step__aside"><b>15 MIN</b>Free intro session</div>
+  </div>
+  <div class="step reveal">
+    <div class="step__n">02</div>
+    <div>
+      <h3>Start your 10-day trial.</h3>
+      <p>Full access — all classes, all equipment, sauna, kids care. The only gym in the area with a full ten-day trial and zero obligations. If we're not a fit, we shake hands and part ways.</p>
+    </div>
+    <div class="step__aside"><b>10 DAYS</b>All access, no contract</div>
+  </div>
+  <div class="step reveal">
+    <div class="step__n">03</div>
+    <div>
+      <h3>Level up. For as long as you want.</h3>
+      <p>Month-to-month membership after your trial. Book classes in the app. Show up. Improve. Bring a friend. Most members see meaningful change in the first 30 days.</p>
+    </div>
+    <div class="step__aside"><b>M/M</b>Cancel anytime</div>
+  </div>
+</section>
+
+<!-- ============ SCHEDULE ============ -->
+<section class="sched" id="schedule">
+  <div class="sched__inner">
+    <div class="sched__head reveal">
+      <h2 class="sched__title">Today.</h2>
+      <div class="sched__nav">
+        <button>Mon</button>
+        <button>Tue</button>
+        <button class="on">Wed</button>
+        <button>Thu</button>
+        <button>Fri</button>
+        <button>Sat</button>
+        <button>Sun</button>
+      </div>
+    </div>
+
+    <div class="sched__grid reveal">
+      <div class="sched__time">05:30</div>
+      <div class="sched__class"><div><div class="sched__class-name">Strength &amp; Conditioning</div></div><div class="sched__class-coach">Coach Aaron · Main floor</div><div class="sched__book">Book</div></div>
+
+      <div class="sched__time">06:00</div>
+      <div class="sched__class"><div><div class="sched__class-name">HIIT with Britt</div></div><div class="sched__class-coach">Coach Britt · Turf</div><div class="sched__book">Book</div></div>
+
+      <div class="sched__time">08:30</div>
+      <div class="sched__class"><div><div class="sched__class-name">Hot Yoga · Slow Flow</div></div><div class="sched__class-coach">Coach Brittany · Studio B</div><div class="sched__book">Book</div></div>
+
+      <div class="sched__time">09:00</div>
+      <div class="sched__class"><div><div class="sched__class-name">Strength Fundamentals</div></div><div class="sched__class-coach">Coach Kelli · Rack row</div><div class="sched__book">Book</div></div>
+
+      <div class="sched__time">12:00</div>
+      <div class="sched__class"><div><div class="sched__class-name">Lunch Rush · Metcon</div></div><div class="sched__class-coach">Coach Aaron · Main floor</div><div class="sched__book">Book</div></div>
+
+      <div class="sched__time">17:30</div>
+      <div class="sched__class"><div><div class="sched__class-name">HIIT with Britt</div></div><div class="sched__class-coach">Coach Britt · Turf</div><div class="sched__book">Book</div></div>
+
+      <div class="sched__time">18:30</div>
+      <div class="sched__class"><div><div class="sched__class-name">Pilates · Reformer</div></div><div class="sched__class-coach">Coach TBD · Studio A</div><div class="sched__book">Book</div></div>
+
+      <div class="sched__time">19:30</div>
+      <div class="sched__class"><div><div class="sched__class-name">Open Gym · Late</div></div><div class="sched__class-coach">Members only · 24/7 fob</div><div class="sched__book">Book</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta" id="cta">
+  <div class="cta__wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 400" preserveAspectRatio="none">
+      <path fill="#22B8E8" fill-opacity=".18" d="M0,220 C240,120 480,340 720,240 C960,140 1200,320 1440,220 L1440,400 L0,400 Z"/>
+      <path fill="#22B8E8" fill-opacity=".28" d="M0,280 C240,200 480,380 720,300 C960,220 1200,360 1440,280 L1440,400 L0,400 Z"/>
+      <path fill="#22B8E8" fill-opacity=".5"  d="M0,340 C240,280 480,400 720,340 C960,280 1200,400 1440,340 L1440,400 L0,400 Z"/>
+    </svg>
+  </div>
+  <div class="cta__inner">
+    <div class="cta__eyebrow">◐ Your call to action</div>
+    <h2 class="cta__title">THE TIDE<br><span class="serif">is</span> <span class="tide">RISING.</span></h2>
+    <p class="cta__sub">Ten days. Full access. Zero obligation. The only gym in Hampstead that lets you try everything before you commit to anything.</p>
+    <div class="cta__row">
+      <a class="btn btn--tide" href="#">Start My 10-Day Trial <span class="arrow">→</span></a>
+      <a class="btn btn--ghost" href="tel:+19104001157">Call 910-400-1157</a>
+    </div>
+    <div class="cta__strip">
+      <div><b>10 DAYS</b>Free trial, no contract</div>
+      <div><b>24 / 7</b>Doors never close</div>
+      <div><b>0 $</b>Kids care included</div>
+      <div><b>60 MIN</b>Free intro session</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOCATION ============ -->
+<section class="loc" id="location">
+  <div class="loc__inner">
+    <div class="reveal">
+      <h2 class="loc__title">Come see<br>the space<br><span class="tide">yourself.</span></h2>
+      <div class="loc__meta">
+        <div>
+          Address
+          <b>16621 US-17, Suite 200<br>Hampstead, NC 28443</b>
+        </div>
+        <div>
+          Phone
+          <b>910·400·1157</b>
+        </div>
+        <div>
+          Email
+          <b style="font-family:var(--f-body);font-size:16px;letter-spacing:0;font-weight:600"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d0a2b9a3b9beb7a4b9b4b5b6b9a4e2e4fee790b7bdb1b9bcfeb3bfbd">[email&#160;protected]</a></b>
+        </div>
+        <div>
+          Hours — Staffed
+          <div class="loc__hours" style="margin-top:8px">
+            <span class="day">Mon–Fri</span><span>09:00 – 17:00</span>
+            <span class="day">Sat–Sun</span><span>09:00 – 17:00</span>
+            <span class="day">Members</span><span>24 / 7 · Fob access</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="loc__map reveal">
+      <div class="loc__pin">Rising Tide · 16621 US-17</div>
+      <div class="loc__mapart" aria-hidden="true">
+        <svg viewBox="0 0 600 520" preserveAspectRatio="xMidYMid slice" width="100%" height="100%">
+          <defs>
+            <pattern id="gridp" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M40 0H0V40" fill="none" stroke="rgba(11,22,51,.06)" stroke-width="1"/>
+            </pattern>
+          </defs>
+          <rect width="600" height="520" fill="#E8DFC9"/>
+          <rect width="600" height="520" fill="url(#gridp)"/>
+          <!-- water (Intracoastal / Topsail Sound) -->
+          <path d="M420,-20 C 460,80 520,180 480,300 C 460,380 540,460 620,540 L 640,540 L 640,-20 Z" fill="#22B8E8" fill-opacity=".22"/>
+          <path d="M440,-20 C 480,90 540,200 500,320 C 480,400 560,470 640,540 L 640,-20 Z" fill="none" stroke="#22B8E8" stroke-width="1" stroke-opacity=".5"/>
+          <!-- US-17 highway -->
+          <path d="M0,360 C 120,320 240,340 360,280 C 460,230 540,220 620,180" fill="none" stroke="#0B1633" stroke-width="5" stroke-linecap="round"/>
+          <path d="M0,360 C 120,320 240,340 360,280 C 460,230 540,220 620,180" fill="none" stroke="#F4F1EA" stroke-width="1" stroke-dasharray="6 8"/>
+          <!-- side streets -->
+          <path d="M180,120 C 200,200 240,260 320,300" fill="none" stroke="#0B1633" stroke-width="2" stroke-opacity=".5"/>
+          <path d="M60,60 L 220,180" fill="none" stroke="#0B1633" stroke-width="2" stroke-opacity=".5"/>
+          <path d="M420,420 C 380,380 340,340 320,300" fill="none" stroke="#0B1633" stroke-width="2" stroke-opacity=".5"/>
+          <path d="M100,480 L 260,380" fill="none" stroke="#0B1633" stroke-width="2" stroke-opacity=".5"/>
+          <!-- labels -->
+          <text x="20" y="350" font-family="JetBrains Mono, monospace" font-size="10" fill="#0B1633" letter-spacing="1.4">US · 17 · N →</text>
+          <text x="540" y="420" font-family="JetBrains Mono, monospace" font-size="10" fill="#0B1633" letter-spacing="1.4" opacity=".55">TOPSAIL SOUND</text>
+          <text x="40" y="490" font-family="JetBrains Mono, monospace" font-size="9" fill="#0B1633" opacity=".45" letter-spacing="1.2">HAMPSTEAD · PENDER CO. · NC</text>
+          <!-- pin marker cross-hair -->
+          <circle cx="312" cy="286" r="32" fill="none" stroke="#22B8E8" stroke-width="1.5" stroke-dasharray="3 4"/>
+          <circle cx="312" cy="286" r="6" fill="#0B1633"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq" id="faq">
+  <div class="faq__inner">
+    <h2 class="faq__title reveal">Got questions?<br>Here's what<br>we hear <span class="tide">most.</span></h2>
+    <div class="faq__list reveal">
+      <details class="faq__item" open>
+        <summary>Do you really offer a 10-day free trial with no obligation?</summary>
+        <div class="faq__answer">Yes. Rising Tide is the only gym in the area with a full 10-day trial and absolutely zero obligation. Full facility access, classes, kids care, and staff support — everything you need to know if we're a fit before you commit.</div>
+      </details>
+      <details class="faq__item">
+        <summary>I've never worked out before. Can I still start?</summary>
+        <div class="faq__answer">Absolutely. Most of our members start exactly where you are. Every workout is universally scaled — a different version for every level — and coaches walk you through form step by step.</div>
+      </details>
+      <details class="faq__item">
+        <summary>How quickly will I see results?</summary>
+        <div class="faq__answer">Consistency is the key. We recommend three classes per week to start. Most members feel measurable change in the first 30 days, and see it soon after.</div>
+      </details>
+      <details class="faq__item">
+        <summary>What does a class actually look like?</summary>
+        <div class="faq__answer">Sixty minutes, led by a qualified coach. We warm up together, brief the workout and demo proper form, work through the session with coaching cues, and cool down together to accelerate recovery.</div>
+      </details>
+      <details class="faq__item">
+        <summary>Do you help with nutrition and recovery too?</summary>
+        <div class="faq__answer">Yes — meal planning, supplement guidance, sleep and recovery routines. Training is only part of the equation, and we treat it that way.</div>
+      </details>
+      <details class="faq__item">
+        <summary>How do I get started?</summary>
+        <div class="faq__answer">Click <em>Start My 10-Day Trial</em> above or call 910·400·1157. You'll book a free 15-minute intro, tour the gym, and meet a coach. From there we start you on the trial.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__top">
+      <div class="footer__col footer__brand">
+        <div class="footer__brand-logo">
+          <img src="assets/logo.png" alt="Rising Tide Fitness"/>
+          <div><b>RISING TIDE</b><span>24/7 Fitness · Hampstead NC</span></div>
+        </div>
+        <p>A different kind of gym. Veteran-owned and family-operated. A community united by a goal: to become the best version of ourselves.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Explore</h4>
+        <a href="#programs">Programs</a>
+        <a href="#facility">Facility</a>
+        <a href="#coaches">Coaches</a>
+        <a href="#schedule">Schedule</a>
+      </div>
+      <div class="footer__col">
+        <h4>Membership</h4>
+        <a href="#cta">10-Day Trial</a>
+        <a href="#">Insurance Programs</a>
+        <a href="#">Personal Training</a>
+        <a href="#">Kids Care</a>
+      </div>
+      <div class="footer__col">
+        <h4>Visit</h4>
+        <a href="#location">Hampstead, NC</a>
+        <a href="tel:+19104001157">910·400·1157</a>
+        <a href="#">Instagram</a>
+        <a href="#">Facebook</a>
+      </div>
+    </div>
+
+    <div class="footer__mega" aria-hidden="true">RISING <span class="fill">TIDE</span> · 24 / 7 ·</div>
+
+    <div class="footer__legal">
+      <span>© 2026 Rising Tide Fitness · Hampstead, NC · Veteran-owned</span>
+      <span>Site rebuild · Committed to being the least generic gym site on the internet</span>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// -------- schedule marquee (day's classes) --------
+(function(){
+  const items = [
+    ['05:30','STRENGTH & COND','Aaron'],
+    ['06:00','HIIT','Britt'],
+    ['08:30','HOT YOGA','Brittany'],
+    ['09:00','FUNDAMENTALS','Kelli'],
+    ['12:00','METCON','Aaron'],
+    ['17:30','HIIT','Britt'],
+    ['18:30','PILATES','Studio A'],
+    ['19:30','OPEN GYM','Members'],
+  ];
+  const track = document.getElementById('schedTrack');
+  const line = items.map(([t,n,c])=>`<span><b>${t}</b> · ${n} · w/ ${c}</span>`).join('  ///  ');
+  track.innerHTML = line + '  ///  ' + line;
+})();
+
+// -------- ticker --------
+(function(){
+  const parts = [
+    '10-DAY FREE TRIAL','◆','NO CONTRACTS','◆','24/7 ACCESS','◆','KIDS CARE INCLUDED','◆',
+    'VETERAN OWNED','◆','FAMILY OPERATED','◆','SAUNA','◆','HAMPSTEAD NC','◆',
+    'INSURANCE PROGRAMS','◆','HOT YOGA','◆','HIIT WITH BRITT','◆','PILATES','◆'
+  ];
+  const html = parts.map(p => p==='◆' ? `<span class="dot">◆</span>` : `<span>${p}</span>`).join(' ');
+  const t = document.getElementById('ticker');
+  t.innerHTML = html + ' ' + html;
+})();
+
+// -------- reveal on scroll --------
+(function(){
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
+  },{rootMargin:'0px 0px -8% 0px', threshold:0.06});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+})();
+
+// -------- nav dark inversion over dark sections --------
+(function(){
+  const nav = document.getElementById('nav');
+  const darkSections = document.querySelectorAll('.hero, .programs, .coaches, .how, .cta, .faq, .footer');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e => {
+      if(e.isIntersecting && e.intersectionRatio > 0.15){
+        nav.classList.add('dark');
+      }
+    });
+    // if none of the dark sections is currently intersecting the top strip, go light
+    const anyDark = Array.from(darkSections).some(s => {
+      const r = s.getBoundingClientRect();
+      return r.top < 80 && r.bottom > 80;
+    });
+    nav.classList.toggle('dark', anyDark);
+  },{rootMargin:'-60px 0px -85% 0px', threshold:[0,0.2,0.5]});
+  darkSections.forEach(s=>io.observe(s));
+})();
+
+// -------- schedule day toggle (visual only) --------
+(function(){
+  document.querySelectorAll('.sched__nav button').forEach(b=>{
+    b.addEventListener('click',()=>{
+      document.querySelectorAll('.sched__nav button').forEach(x=>x.classList.remove('on'));
+      b.classList.add('on');
+    });
+  });
+})();
+</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79","spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
